@@ -1,0 +1,74 @@
+{
+  "menues": [
+    {
+      "name": "tortilla con ensalada",
+      "precio": "$360",
+      "img": "",
+      "agregado": false,
+      "id": 1
+    },
+    {
+      "name": "suprema con ensalada",
+      "precio": "$360",
+      "img": "",
+      "agregado": false,
+      "id": 2
+    },
+    {
+      "name": "arroz con atun",
+      "precio": "$360",
+      "img": "",
+      "agregado": false,
+      "id": 3
+    },
+    {
+      "name": "pastel de papa con ensalada",
+      "precio": "$360",
+      "img": "",
+      "agregado": false,
+      "id": 4
+    },
+    {
+      "name": "fideos con bolognesa",
+      "precio": "$360",
+      "img": "",
+      "agregado": false,
+      "id": 5
+    }
+  ],
+  "sandwicheria": [
+    {
+      "name": "Comun de suprema",
+      "precio": "$320",
+      "descripcion":"",
+      "opcion": "Completo",
+      "precioOpcion": "$400",
+      "descripcionOpcion":"",
+      "img": "",
+      "agregado": false,
+      "id": 1
+    },
+    {
+      "name": "Comun de milanga",
+      "precio": "$370",
+      "descripcion":"",
+      "opcion": "Completo",
+      "precioOpcion": "$450",
+      "descripcionOpcion":"",
+      "img": "",
+      "agregado": false,
+      "id": 2
+    },
+    {
+      "name": "Hamburguesa comun",
+      "precio": "$320",
+      "descripcion":"",
+      "opcion": "Completo",
+      "precioOpcion": "$400",
+      "descripcionOpcion":"",
+      "img": "",
+      "agregado": false,
+      "id": 3
+    }
+  ]
+}
