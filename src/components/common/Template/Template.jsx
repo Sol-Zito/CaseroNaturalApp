@@ -16,12 +16,13 @@ const style = {
   p: 4,
 };
 
-const Template = ({ today, sandwicheria }) => {
+const Template = ({ today, sandwicheria, infoData }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const sandwiches = sandwicheria;
+
 
   return (
     <>
@@ -34,8 +35,9 @@ const Template = ({ today, sandwicheria }) => {
       >
         <Box sx={style}>
           <main>
-            <h1>Casero.natural</h1>
-            <h3>horario</h3>
+            <h1>{infoData.nameStore}</h1>
+            <h3>horario: {infoData.horario.dias} {infoData.horario.horas} </h3>
+
           </main>
           <section>
             <h2>Menu del dia:</h2>
@@ -49,7 +51,7 @@ const Template = ({ today, sandwicheria }) => {
               })}
             </ol>
             <h3>Anticipen su pedido</h3>
-            <h4>@intagram</h4>
+            <h4>@intagram: {infoData.instagram}</h4>
           </section>
           <section>
             <h2>Sandwicheria:</h2>

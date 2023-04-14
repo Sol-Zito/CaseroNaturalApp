@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import CardProducto from "../../common/card/CardProducto";
 import CreateProducto from "../../common/CreateProducto/CreateProducto";
 import Template from "../../common/Template/Template";
+import { InfoContext } from "../../context/InfoContext";
 
 const json = {
   "menues": [
@@ -81,8 +82,11 @@ const json = {
 
 const Home = () => {
   const [today, setToday] = useState([]);
-
   const sandwicheria = json.sandwicheria;
+
+  const {infoData } = useContext(InfoContext);
+
+  console.log("infoData", infoData);
 
   const addToday = (menu) => {
     let existe = today.some( (el) =>  menu.id === el.id )
@@ -107,10 +111,9 @@ const Home = () => {
 
   return (
     <>
-      {/* <HeaderHome/> */}
       <CreateProducto/>
       <br></br>
-      <Template today={today} sandwicheria={sandwicheria}/>
+      <Template today={today} sandwicheria={sandwicheria} infoData={infoData}/>
       <h2>Menues para elegir:</h2>
       {json.menues.map((menu) => {
         return (
@@ -122,8 +125,6 @@ const Home = () => {
           />
         );
       })}
-
-
     </>
   );
 };
