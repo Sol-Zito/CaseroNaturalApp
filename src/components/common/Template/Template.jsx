@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Modal from "@mui/material/Modal";
+import { InfoContext } from "../../context/InfoContext";
+import { UserData } from "../../context/UserContext";
+import { Delete } from "@mui/icons-material";
 
 const style = {
   position: "absolute",
@@ -16,58 +18,59 @@ const style = {
   p: 4,
 };
 
-const Template = ({ today, sandwicheria, infoData }) => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+const Template = () => {
+  const { state } = useContext(InfoContext);
+  const { userstate } = useContext(UserData);
 
-  const sandwiches = sandwicheria;
-
+  const menues = state.menues;
+  const sandwicheria = state.sandwicheria;
 
   return (
     <>
-      <Button onClick={handleOpen}>Open modal</Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <main>
-            <h1>{infoData.nameStore}</h1>
-            <h3>horario: {infoData.horario.dias} {infoData.horario.horas} </h3>
-
-          </main>
-          <section>
-            <h2>Menu del dia:</h2>
-            <ol>
-              {today.map((menu) => {
-                return (
-                  <li key={menu.id}>
-                    {menu.name} {menu.precio}
-                  </li>
-                );
-              })}
-            </ol>
-            <h3>Anticipen su pedido</h3>
-            <h4>@intagram: {infoData.instagram}</h4>
-          </section>
-          <section>
-            <h2>Sandwicheria:</h2>
-            <ul>
-              {sandwiches.map((sandwich) => {
-                return (
-                  <li key={sandwich.id}>
-                    {sandwich.name} {sandwich.precio} / {sandwich.opcion}
-                    {sandwich.precioOpcion}
-                  </li>
-                );
-              })}
-            </ul>
-          </section>
-        </Box>
-      </Modal>
+      <Box sx={style}>
+        <main>
+          <h1>Name: {userstate.nameStore}</h1>
+          <h3>
+            Horario: {userstate.horario.dias} {userstate.horario.horas}{" "}
+          </h3>
+        </main>
+        <section>
+          <h2>Menu del dia:</h2>
+          <ol>
+            {menues.map((menu) => {
+              return (
+                <div key={menu.id}>
+                  {menu.name} {menu.precio}
+                  <Button
+                    onClick={() => {
+                      // setAgreado(true);
+                      // removeProducto(producto);
+                    }}
+                    style={{ color: "white", backgroundColor: "red" }}
+                  >
+                    <Delete />
+                  </Button>
+                </div>
+              );
+            })}
+          </ol>
+          <h3>Anticipen su pedido</h3>
+          <h4>@intagram: {userstate.instagram}</h4>
+        </section>
+        <section>
+          <h2>Sandwicheria:</h2>
+          <ul>
+            {sandwicheria.map((sandwich) => {
+              return (
+                <li key={sandwich.id}>
+                  {sandwich.name} {sandwich.precio} / {sandwich.opcion}
+                  {sandwich.precioOpcion}
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      </Box>
     </>
   );
 };

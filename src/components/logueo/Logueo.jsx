@@ -77,17 +77,6 @@ const Logueo = ({ handleSubmit, changeUser, error }) => {
                 margin="normal"
                 required
                 fullWidth
-                id="name"
-                label="Ingrese su nombre: "
-                name="name"
-                type="text"
-                onChange={changeUser}
-                autoFocus
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
                 id="email"
                 label="Email Address"
                 name="email"

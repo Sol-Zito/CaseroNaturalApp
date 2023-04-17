@@ -1,65 +1,64 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
-import { Delete } from "@mui/icons-material";
+import { Button, CardActions } from "@mui/material";
+import { InfoContext } from "../../context/InfoContext";
 
-const CardProducto = ({ producto, addToday, removeProducto }) => {
-  const { name, precio, imagen } = producto;
-
-  const [agregado, setAgreado] = useState(false);
-
+const CardProducto = ({ producto, addToday }) => {
+  const { name, precio, img } = producto;
+  const { state } = useContext(InfoContext);
+  const isAdd = state.menues;
 
   return (
-    <>
-      <Card
-        sx={{
-          margin: 'auto',
-          maxWidth: "70%",
-          maxHeight: "300px",
-          textAlign: "center",
-          alignContent: "center",
-          display: "flex",
-          flexDirection: "column",
-          backgroundColor: "beige",
-          border: "solid",
-        }}
+    <Card
+      sx={{
+        margin: "auto",
+        maxWidth: "70%",
+        maxHeight: "300px",
+        textAlign: "center",
+        alignContent: "center",
+        display: "flex",
+        flexDirection: "column",
+        backgroundColor: "beige",
+        border: "solid",
+      }}
+    >
+      <CardContent
+        sx={{ display: "flex", flexDirection: "column", padding: "4px" }}
       >
-        <CardActionArea>
-          <CardMedia component="img" image={imagen} alt={name} />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {name}
-            </Typography>
-            <Typography variant="h6" color="text.secondary" name="precio">
-              {precio}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions sx={{ display: "flex", justifyContent: "center" }}>
+        <Typography gutterBottom variant="h5" component="div">
+          {name}
+        </Typography>
+        <CardMedia
+          component="img"
+          image={img}
+          alt={name}
+          sx={{ height: "60px" }}
+        />
+        <Typography variant="h6" color="text.secondary" name="precio">
+          {precio}
+        </Typography>
+      </CardContent>
+
+      <CardActions sx={{ display: "flex", justifyContent: "center" }}>
+        {isAdd.some((el) => el.id === producto.id) ? (
+          <Button variant="contained" disabled>
+            Agregar
+          </Button>
+        ) : (
           <Button
             onClick={() => {
-              setAgreado(false);
               addToday(producto);
             }}
             style={{ color: "white", backgroundColor: "blue" }}
           >
             Agregar
           </Button>
-          <Button
-            onClick={() => {
-              setAgreado(true);
-              removeProducto(producto);
-            }}
-            style={{ color: "white", backgroundColor: "red" }}
-          >
-            <Delete></Delete>
-          </Button>
-        </CardActions>
-      </Card>
-    </>
+        )}
+      </CardActions>
+    </Card>
   );
 };
 

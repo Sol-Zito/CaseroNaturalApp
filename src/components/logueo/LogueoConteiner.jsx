@@ -8,7 +8,6 @@ const LogueoConteiner = () => {
   const navigate = useNavigate();
 
   const [user, setUser] = useState({
-    name: "",
     email: "",
     password: "",
   });
@@ -25,14 +24,6 @@ const LogueoConteiner = () => {
     return reMedio.test(email);
   };
 
-  const validName = (name) => {
-    let valid = /^[A-Za-zñÑ\s]*$/;
-    if (valid.test(name) && name.length > 5) {
-      return true;
-    } else {
-      return false;
-    }
-  };
   const [error, setError] = useState({
     isErr: false,
     errorMessage: "** Please verify your information again **",
@@ -41,11 +32,7 @@ const LogueoConteiner = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (
-      validEmail(user.email) &&
-      validName(user.name) &&
-      user.password.length > 8
-    ) {
+    if (validEmail(user.email) && user.password.length > 8) {
       dispatch({
         type: "CHANGE_ALL",
         payload: user,

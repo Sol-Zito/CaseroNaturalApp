@@ -2,7 +2,7 @@ import { createContext, useReducer } from "react";
 
 export const AuthContext = createContext();
 
-const userData = { name: "", email: "", password: "" };
+const userData = { email: "", password: "" };
 
 function changeUserData(state, action) {
   switch (action.type) {
@@ -10,7 +10,6 @@ function changeUserData(state, action) {
       let newIfo = action.payload;
       return {
         ...state,
-        name: newIfo.name,
         email: newIfo.email,
         password: newIfo.password,
       };
@@ -21,7 +20,7 @@ function changeUserData(state, action) {
 }
 
 const AuthContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer({ userData, changeUserData });
+  const [state, dispatch] = useReducer(changeUserData, userData);
 
   return (
     <AuthContext.Provider value={{ state, dispatch }}>

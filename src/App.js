@@ -1,26 +1,32 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import InfoUsuario from "./components/common/infoUsuario/InfoUsuario";
 import AuthContextProvider from "./components/context/AuthContext";
 import InfoContextProvider from "./components/context/InfoContext";
 import Home from "./components/pages/Home/Home";
 import LogueoConteiner from "./components/logueo/LogueoConteiner";
+import Template from "./components/common/Template/Template";
+import UseContextProvider from "./components/context/UserContext";
+import Navbar from "./components/common/navbar/Navbar";
+import CreateProducto from "./components/common/CreateProducto/CreateProducto";
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <AuthContextProvider>
-          <InfoContextProvider>
+    <BrowserRouter>
+      <AuthContextProvider>
+        <InfoContextProvider>
+          <UseContextProvider>
             <Routes>
-              <Route path="/" element={<LogueoConteiner />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/user" element={<InfoUsuario />} />
+              <Route element={<Navbar />}>
+                <Route path="/" element={<LogueoConteiner />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/newProduct" element={<CreateProducto />} />
+                <Route path="/template" element={<Template />} />
+              </Route>
             </Routes>
-          </InfoContextProvider>
-        </AuthContextProvider>
-      </BrowserRouter>
-    </div>
+          </UseContextProvider>
+        </InfoContextProvider>
+      </AuthContextProvider>
+    </BrowserRouter>
   );
 }
 

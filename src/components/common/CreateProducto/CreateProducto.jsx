@@ -1,45 +1,69 @@
-import React from 'react'
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
+import React from "react";
+import { Button, Grid, TextField, Typography } from "@mui/material";
 
 const CreateProducto = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   return (
-    <>
-      <Button onClick={handleOpen}>Nuevo producto</Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-        </Box>
-      </Modal>
-    </>
-  )
-}
+    <div style={{ width: " 90%", margin: "auto" }}>
+      <Typography variant="h6" gutterBottom>
+        Ingresar nuevo menu:
+      </Typography>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="name"
+            name="name"
+            label="Name"
+            fullWidth
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="price"
+            name="price"
+            label="Price"
+            fullWidth
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            required
+            id="img"
+            name="img"
+            label="Image"
+            fullWidth
+            autoComplete="shipping address-line1"
+            variant="standard"
+          />
+        </Grid>
 
-export default CreateProducto
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="Opcion"
+            name="Opcion"
+            label="Opcion"
+            fullWidth
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            id="price-option"
+            name="price-option"
+            label="Price option"
+            fullWidth
+            variant="standard"
+          />
+        </Grid>
+      </Grid>
+      <Button>Enviar</Button>
+      {/* </Modal> */}
+    </div>
+  );
+};
+
+export default CreateProducto;

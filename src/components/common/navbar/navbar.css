@@ -1,0 +1,11 @@
+li {
+    border-style: outset;
+    list-style-type: none;
+    height: 30px;
+}
+
+
+a {
+    text-decoration: none;
+    color: black;
+}
