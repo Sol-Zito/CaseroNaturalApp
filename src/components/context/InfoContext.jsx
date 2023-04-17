@@ -43,6 +43,7 @@ function changeValues(state, action) {
     case "REMOVE_MENUE":
       let newArr = state.menues.filter((ele) => ele.id !== action.payload.id);
       removeMenuStorage(newArr);
+      alert(`remove to template`);
       return { ...state, menues: getMenuStorage() };
     case "CLEAR_ALL":
       localStorage.setItem("menu", []);

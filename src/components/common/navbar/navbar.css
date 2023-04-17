@@ -1,5 +1,12 @@
+.div-container {
+    display: flex;
+    gap: 2px;
+    justify-content: flex-end;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
 li {
-    border-style: outset;
     list-style-type: none;
     height: 30px;
 }

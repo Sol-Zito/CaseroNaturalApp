@@ -57,6 +57,14 @@ const CardProducto = ({ producto, addToday }) => {
             Agregar
           </Button>
         )}
+        <Button
+          // onClick={() => {
+          //   modProduct(producto);
+          // }}
+          style={{ color: "white", backgroundColor: "blue" }}
+        >
+          Ediatr
+        </Button>
       </CardActions>
     </Card>
   );

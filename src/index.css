@@ -16,3 +16,32 @@ div {
   width: 90%;
   margin: auto
 }
+
+
+.dark {
+  background-color: #2e5784;
+  color: white;
+}
+
+.light {
+  background-color: #ead7d7b1;
+  color: #1c1a1a;
+}
+
+.light>a {
+  color: #1c1a1a;
+}
+
+.main-container {
+  display: grid;
+  align-content: space-between;
+  height: inherit;
+}
+
+.dark>a {
+  color: white;
+}
+
+.dark>ul>li>a {
+  color: white;
+}

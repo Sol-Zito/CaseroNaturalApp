@@ -19,11 +19,15 @@ const style = {
 };
 
 const Template = () => {
-  const { state } = useContext(InfoContext);
+  const { state, dispatch } = useContext(InfoContext);
   const { userstate } = useContext(UserData);
 
   const menues = state.menues;
   const sandwicheria = state.sandwicheria;
+
+  const removeProduct = (obj) => {
+    dispatch({ type: "REMOVE_MENUE", payload: obj });
+  };
 
   return (
     <>
@@ -31,7 +35,7 @@ const Template = () => {
         <main>
           <h1>Name: {userstate.nameStore}</h1>
           <h3>
-            Horario: {userstate.horario.dias} {userstate.horario.horas}{" "}
+            Horario: {userstate.horario.dias} {userstate.horario.horas}
           </h3>
         </main>
         <section>
@@ -43,9 +47,9 @@ const Template = () => {
                   {menu.name} {menu.precio}
                   <Button
                     onClick={() => {
-                      // setAgreado(true);
-                      // removeProducto(producto);
+                      removeProduct(menu);
                     }}
+                    variant="outlined"
                     style={{ color: "white", backgroundColor: "red" }}
                   >
                     <Delete />

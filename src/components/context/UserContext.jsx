@@ -2,6 +2,11 @@ import { createContext, useReducer } from "react";
 
 export const UserData = createContext();
 
+const getThemeFromStorage = () => {
+  const localData = localStorage.getItem("theme");
+  return localData ? localData : "dark";
+};
+
 const initialValues = {
   nameStore: "",
   horario: { dias: "", horas: "" },
@@ -11,6 +16,7 @@ const initialValues = {
     email: "",
     password: "",
   },
+  theme: getThemeFromStorage(),
 };
 
 function changeValues(userstate, action) {
@@ -23,6 +29,15 @@ function changeValues(userstate, action) {
       break;
     case "CHANGE_ALL":
       break;
+
+    case "CHANGE_THEME":
+      if (userstate.theme === "dark") {
+        localStorage.setItem("theme", "light");
+      } else if (userstate.theme === "light") {
+        localStorage.setItem("theme", "dark");
+      }
+      alert("se cambio el theme");
+      return { ...userstate, theme: getThemeFromStorage() };
 
     default:
       break;

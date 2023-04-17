@@ -9,6 +9,8 @@ import UseContextProvider from "./components/context/UserContext";
 import Navbar from "./components/common/navbar/Navbar";
 import CreateProducto from "./components/common/CreateProducto/CreateProducto";
 
+import "./index.css";
+
 function App() {
   return (
     <BrowserRouter>
