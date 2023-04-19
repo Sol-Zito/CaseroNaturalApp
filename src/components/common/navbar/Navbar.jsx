@@ -3,7 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import { Button } from "@mui/material";
 import { UserData } from "../../context/UserContext";
 import "../../../index.css";
-import "./navbar.css";
+import styles from "./navbar.module.css";
 
 const Navbar = () => {
   const { userstate, userdispatch } = useContext(UserData);
@@ -12,26 +12,26 @@ const Navbar = () => {
 
   return (
     <>
-      <div className={`${userstate.theme} div-container`}>
-        <li>
-          <Link to="/home">Home</Link>
-        </li>
-        <li>
-          <Link to="/contact">Contact</Link>
-        </li>
-        <li>
-          <Link to="/template">Template</Link>
-        </li>
-        <li>
-          <Button
-            variant="outlined"
-            onClick={() => {
-              userdispatch({ type: "CHANGE_THEME" });
-            }}
-          >
-            ☀ 🌙
-          </Button>
-        </li>
+      <div className={`${userstate.theme} ${styles.divContainer}`}>
+        <Link to="/home">
+          <Button>Home</Button>
+        </Link>
+
+        <Link to="/account">
+          <Button>Mi cuenta</Button>
+        </Link>
+
+        <Link to="/template">
+          <Button>Template</Button>
+        </Link>
+
+        <Button
+          onClick={() => {
+            userdispatch({ type: "CHANGE_THEME" });
+          }}
+        >
+          ☀ 🌙
+        </Button>
       </div>
       <br></br>
 
