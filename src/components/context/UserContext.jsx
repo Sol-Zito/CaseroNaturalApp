@@ -7,29 +7,49 @@ const getThemeFromStorage = () => {
   return localData ? localData : "dark";
 };
 
+const getUserFromStorage = () => {
+  const localData = localStorage.getItem("user");
+  return localData ? JSON.parse(localData) : {};
+};
+
 const initialValues = {
-  nameStore: "",
-  horario: { dias: "", horas: "" },
-  instagram: "",
-  segurity: {
-    name: "",
-    email: "",
-    password: "",
+  DataBase: {
+    namestore: "",
+    instagram: "",
+    segurity: {
+      name: "",
+      email: "",
+      password: "",
+    },
   },
+  userInfo: getUserFromStorage(),
   theme: getThemeFromStorage(),
 };
 
 function changeValues(userstate, action) {
   switch (action.type) {
     case "CHANGE_NAME":
-      break;
+      return;
     case "CHANGE_HORARIO":
-      break;
+      return;
     case "CHANGE_INSTAGRAM":
-      break;
+      return;
     case "CHANGE_ALL":
-      break;
-
+      let newUser = action.payload;
+      console.log("action.payload", action.payload);
+      let newInfo = {
+        ...userstate.DataBase,
+        namestore: newUser.namestore,
+        segurity: {
+          ...userstate.user.segurity,
+          name: newUser.name,
+          email: newUser.email,
+          password: newUser.password,
+        },
+      };
+      console.log("userstate", newInfo);
+      localStorage.setItem("user", JSON.stringify(newInfo));
+      return { ...userstate, userInfo: getUserFromStorage() };
     case "CHANGE_THEME":
       if (userstate.theme === "dark") {
         localStorage.setItem("theme", "light");

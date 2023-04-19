@@ -1,10 +1,8 @@
-import React, { useContext, useState } from "react";
-import { AuthContext } from "../context/AuthContext";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Logueo from "./Logueo";
 
 const LogueoConteiner = () => {
-  const { dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [user, setUser] = useState({
@@ -16,11 +14,9 @@ const LogueoConteiner = () => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  console.log(user);
-
   const validEmail = (email) => {
     let reMedio =
-      /^(([^<>()\[\]\.,;:\s@\”]+(\.[^<>()\[\]\.,;:\s@\”]+)*)|(\”.+\”))@(([^<>()[\]\.,;:\s@\”]+\.)+[^<>()[\]\.,;:\s@\”]{2,})$/;
+      /^(([^<>().,;:s@”]+(.[^<>().,;:s@”]+)*)|(”.+”))@(([^<>()[].,;:s@”]+.)+[^<>()[].,;:s@”]{2,})$/;
     return reMedio.test(email);
   };
 
@@ -33,11 +29,6 @@ const LogueoConteiner = () => {
     event.preventDefault();
 
     if (validEmail(user.email) && user.password.length > 8) {
-      dispatch({
-        type: "CHANGE_ALL",
-        payload: user,
-      });
-
       navigate("/home");
     } else {
       setError({ ...error, isErr: true });

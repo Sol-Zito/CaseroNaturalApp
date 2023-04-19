@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import AuthContextProvider from "./components/context/AuthContext";
 import InfoContextProvider from "./components/context/InfoContext";
 import Home from "./components/pages/Home/Home";
 import LogueoConteiner from "./components/logueo/LogueoConteiner";
@@ -10,24 +9,24 @@ import Navbar from "./components/common/navbar/Navbar";
 import CreateProducto from "./components/common/CreateProducto/CreateProducto";
 
 import "./index.css";
+import FormContainer from "./components/pages/Form/FormContainer";
 
 function App() {
   return (
     <BrowserRouter>
-      <AuthContextProvider>
-        <InfoContextProvider>
-          <UseContextProvider>
-            <Routes>
-              <Route element={<Navbar />}>
-                <Route path="/" element={<LogueoConteiner />} />
-                <Route path="/home" element={<Home />} />
-                <Route path="/newProduct" element={<CreateProducto />} />
-                <Route path="/template" element={<Template />} />
-              </Route>
-            </Routes>
-          </UseContextProvider>
-        </InfoContextProvider>
-      </AuthContextProvider>
+      <InfoContextProvider>
+        <UseContextProvider>
+          <Routes>
+            <Route path="/" element={<LogueoConteiner />} />
+            <Route element={<Navbar />}>
+              <Route path="/home" element={<Home />} />
+              <Route path="/newProduct" element={<CreateProducto />} />
+              <Route path="/template" element={<Template />} />
+            </Route>
+            <Route path="/newContact" element={<FormContainer />} />
+          </Routes>
+        </UseContextProvider>
+      </InfoContextProvider>
     </BrowserRouter>
   );
 }

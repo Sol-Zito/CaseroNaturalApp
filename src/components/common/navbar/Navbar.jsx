@@ -1,25 +1,18 @@
 import React, { useContext, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { Button } from "@mui/material";
+import { UserData } from "../../context/UserContext";
 import "../../../index.css";
 import "./navbar.css";
-import { InfoContext } from "../../context/InfoContext";
-import { UserData } from "../../context/UserContext";
 
 const Navbar = () => {
-  const { dispatch } = useContext(InfoContext);
-  const { userstate } = useContext(UserData);
+  const { userstate, userdispatch } = useContext(UserData);
 
   useEffect(() => {}, [userstate.theme]);
 
   return (
     <>
       <div className={`${userstate.theme} div-container`}>
-        {/* <li>
-          <IconButton color="inherit" aria-label="open drawer">
-            <MenuIcon />
-          </IconButton>
-        </li> */}
         <li>
           <Link to="/home">Home</Link>
         </li>
@@ -33,7 +26,7 @@ const Navbar = () => {
           <Button
             variant="outlined"
             onClick={() => {
-              dispatch({ type: "CHANGE_THEME" });
+              userdispatch({ type: "CHANGE_THEME" });
             }}
           >
             ☀ 🌙
