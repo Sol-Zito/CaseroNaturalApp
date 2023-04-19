@@ -10,6 +10,11 @@ import CreateProducto from "./components/common/CreateProducto/CreateProducto";
 
 import "./index.css";
 import FormContainer from "./components/pages/Form/FormContainer";
+import Account from "./components/pages/Account/Account";
+import {
+  ChangeDataBussines,
+  ChangeDataPersonal,
+} from "./components/pages/Account/changeData";
 
 function App() {
   return (
@@ -22,6 +27,15 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/newProduct" element={<CreateProducto />} />
               <Route path="/template" element={<Template />} />
+              <Route path="/account" element={<Account />} />
+              <Route
+                path="/account/changeDataPersonal"
+                element={<ChangeDataPersonal />}
+              />
+              <Route
+                path="/account/ChangeDataBussines"
+                element={<ChangeDataBussines />}
+              />
             </Route>
             <Route path="/newContact" element={<FormContainer />} />
           </Routes>

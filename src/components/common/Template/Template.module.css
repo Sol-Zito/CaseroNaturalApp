@@ -1,0 +1,17 @@
+.box {
+    max-width: 644px;
+    width: 80%;
+    margin: auto;
+    border: 2px solid;
+    padding: 13px;
+    text-transform: capitalize;
+}
+
+li {
+    list-style: none;
+}
+
+.divbtn {
+    text-align: center;
+    margin: 5px;
+}

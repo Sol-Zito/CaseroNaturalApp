@@ -1,0 +1,70 @@
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    box-sizing: inherit;
+    color: #2c3e50;
+    font-family: "Montserrat", Sans-serif;
+    margin: auto;
+    width: 90%;
+}
+
+.box {
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 7px;
+    box-shadow: -2px 1px 7px 9px rgba(197, 138, 138, 0.452);
+    border-radius: 11px;
+}
+
+h1 {
+    text-align: center;
+}
+
+h4 {
+    margin-bottom: 0 !important;
+}
+
+.divider {
+    clear: both;
+    border-bottom: 1px solid rgba(44, 62, 80, 0.1);
+}
+
+.dblock {
+    display: block !important;
+}
+
+a {
+    color: #eea9ee;
+    fill: #eea9ee;
+    font-weight: bold;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border: ridge;
+    width: 80%;
+    margin: auto;
+    border-radius: 20px;
+    padding: 14px;
+    align-content: stretch;
+    gap: 9px;
+}
+
+label {
+    display: block;
+}
+
+input {
+    width: 90%;
+}
+
+.divbtn {
+    align-self: center;
+    display: flex;
+    gap: 7px;
+}

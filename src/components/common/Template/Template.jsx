@@ -1,27 +1,14 @@
 import React, { useContext } from "react";
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { InfoContext } from "../../context/InfoContext";
 import { UserData } from "../../context/UserContext";
 import { Delete } from "@mui/icons-material";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  maxWidth: "70%",
-  maxHeight: "85%",
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+import styles from "./Template.module.css";
 
 const Template = () => {
   const { state, dispatch } = useContext(InfoContext);
   const { userstate } = useContext(UserData);
-
+  const infoUser = userstate.userInfo;
   const menues = state.menues;
   const sandwicheria = state.sandwicheria;
 
@@ -31,35 +18,48 @@ const Template = () => {
 
   return (
     <>
-      <Box sx={style}>
+      <div className={styles.divbtn}>
+        <Button variant="outlined">Imprimir</Button>
+      </div>
+      <div className={styles.box}>
         <main>
-          <h1>Name: {userstate.nameStore}</h1>
-          <h3>
-            Horario: {userstate.horario.dias} {userstate.horario.horas}
-          </h3>
+          <h1>Name: {infoUser.namestore}</h1>
+          <h4>@intagram: {infoUser.instagram}</h4>
+          {/* <h3>
+            Horario: {infoUser.horario.dias} {infoUser.horario.horas}
+          </h3> */}
         </main>
         <section>
           <h2>Menu del dia:</h2>
           <ol>
             {menues.map((menu) => {
               return (
-                <div key={menu.id}>
-                  {menu.name} {menu.precio}
-                  <Button
-                    onClick={() => {
-                      removeProduct(menu);
+                <li key={menu.id}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      flexWrap: "nowrap",
+                      justifyContent: "flex-start",
+                      alignItems: "stretch",
                     }}
-                    variant="outlined"
-                    style={{ color: "white", backgroundColor: "red" }}
                   >
-                    <Delete />
-                  </Button>
-                </div>
+                    <button
+                      onClick={() => {
+                        removeProduct(menu);
+                      }}
+                      style={{ margin: "2px 5px", padding: "unset" }}
+                    >
+                      <Delete />
+                    </button>
+                    <p>
+                      {menu.name} {menu.precio}
+                    </p>
+                  </div>
+                </li>
               );
             })}
           </ol>
-          <h3>Anticipen su pedido</h3>
-          <h4>@intagram: {userstate.instagram}</h4>
         </section>
         <section>
           <h2>Sandwicheria:</h2>
@@ -74,7 +74,8 @@ const Template = () => {
             })}
           </ul>
         </section>
-      </Box>
+        <h3>Anticipen su pedido</h3>
+      </div>
     </>
   );
 };

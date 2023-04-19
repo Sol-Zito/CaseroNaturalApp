@@ -16,9 +16,12 @@ const initialValues = {
   DataBase: {
     namestore: "",
     instagram: "",
+    email: "",
     segurity: {
       name: "",
       email: "",
+      phone: "",
+      addres: "",
       password: "",
     },
   },
@@ -28,12 +31,30 @@ const initialValues = {
 
 function changeValues(userstate, action) {
   switch (action.type) {
-    case "CHANGE_NAME":
-      return;
-    case "CHANGE_HORARIO":
-      return;
-    case "CHANGE_INSTAGRAM":
-      return;
+    case "CHANGE_PERSONAL_DATA":
+      let personal = action.payload;
+      let newInfoPersonal = {
+        ...userstate.userInfo,
+        segurity: {
+          ...userstate.userInfo.segurity,
+          name: personal.name,
+          email: personal.email,
+          phone: personal.phone,
+          addres: personal.addres,
+        },
+      };
+      localStorage.setItem("user", JSON.stringify(newInfoPersonal));
+      return { ...userstate, userInfo: getUserFromStorage() };
+    case "CHANGE_BUSSINES_DATA":
+      let bussines = action.payload;
+      let newInfoBussines = {
+        ...userstate.userInfo,
+        namestore: bussines.namestore,
+        email: bussines.email,
+        instagram: bussines.instagram,
+      };
+      localStorage.setItem("user", JSON.stringify(newInfoBussines));
+      return { ...userstate, userInfo: getUserFromStorage() };
     case "CHANGE_ALL":
       let newUser = action.payload;
       console.log("action.payload", action.payload);
@@ -41,7 +62,7 @@ function changeValues(userstate, action) {
         ...userstate.DataBase,
         namestore: newUser.namestore,
         segurity: {
-          ...userstate.user.segurity,
+          ...userstate.DataBase.segurity,
           name: newUser.name,
           email: newUser.email,
           password: newUser.password,
