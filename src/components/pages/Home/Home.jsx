@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { getMenues } from "../../../services/menuesServices";
 import CardContainerProduct from "../../common/card/CardContainerProduct";
 import { UserData } from "../../context/UserContext";
+import styled from "./home.module.css";
 
 const Home = () => {
   const [menues, setMenues] = useState([]);
@@ -17,8 +18,8 @@ const Home = () => {
 
   return (
     <>
-      <h1>Bienvenido {infoSegurity.name}</h1>
-      <CardContainerProduct menues={menues} />;
+      <h1 className={styled.h1H}>Bienvenido {infoSegurity.name}</h1>
+      <CardContainerProduct menues={menues} />
     </>
   );
 };

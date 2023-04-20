@@ -28,11 +28,11 @@ const LogueoConteiner = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (validEmail(user.email) && user.password.length > 8) {
-      navigate("/home");
-    } else {
-      setError({ ...error, isErr: true });
-    }
+    //if (validEmail(user.email) && user.password.length > 8) {
+    navigate("/home");
+    // } else {
+    //   setError({ ...error, isErr: true });
+    // }
   };
   return (
     <>

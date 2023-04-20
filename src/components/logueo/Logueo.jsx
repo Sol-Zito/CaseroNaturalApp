@@ -124,7 +124,15 @@ const Logueo = ({ handleSubmit, changeUser, error }) => {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link to="#">Forgot password?</Link>
+                  <Link to="#">
+                    <Button
+                      onClick={() => {
+                        alert("revise su casilla de correos");
+                      }}
+                    >
+                      Forgot password?
+                    </Button>
+                  </Link>
                 </Grid>
                 <Grid item>
                   <Link to="/newContact">

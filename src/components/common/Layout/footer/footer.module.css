@@ -1,0 +1,6 @@
+.lista {
+    list-style: none;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
