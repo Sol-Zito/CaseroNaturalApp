@@ -1,7 +1,3 @@
-.App {
-  text-align: center;
-}
-
 .App-header {
   background-color: #282c34;
   height: 50vh;
@@ -14,6 +10,27 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #eff5f7;
 }
 
+.dark {
+  background-color: #2e5784;
+  color: white;
+}
+
+.light {
+  background-color: #ead7d7b1;
+  color: #1c1a1a;
+}
+
+.light>a {
+  color: #1c1a1a;
+}
+
+.dark>a {
+  color: white;
+}
+
+.dark>ul>li>a {
+  color: white;
+}

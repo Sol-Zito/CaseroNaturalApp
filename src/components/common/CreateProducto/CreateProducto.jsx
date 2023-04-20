@@ -66,8 +66,8 @@ const CreateProducto = () => {
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="Option"
-            name="Option"
+            id="option"
+            name="option"
             label="Option"
             fullWidth
             variant="standard"
@@ -76,8 +76,8 @@ const CreateProducto = () => {
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            id="price-option"
-            name="price-option"
+            id="priceOption"
+            name="priceOption"
             label="Price option"
             fullWidth
             variant="standard"

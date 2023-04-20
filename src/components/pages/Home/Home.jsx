@@ -13,12 +13,14 @@ const Home = () => {
 
   useEffect(() => {
     const menuApi = getMenues();
-    menuApi.then((res) => setMenues(res.data));
+    menuApi
+      .then((res) => setMenues(res.data))
+      .catch((err) => console.log("err message", err));
   }, []);
 
   return (
     <>
-      <h1 className={styled.h1H}>Bienvenido {infoSegurity.name}</h1>
+      <h1 className={styled.h1H}>Welcome {infoSegurity.name}!!</h1>
       <CardContainerProduct menues={menues} />
     </>
   );

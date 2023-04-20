@@ -30,7 +30,7 @@ function changeValues(state, action) {
   switch (action.type) {
     case "ADD_MENUE":
       let newMenu = action.payload;
-      let existe = state.menues.some((ele) => ele.name === newMenu.name);
+      let existe = state.menues.some((ele) => ele.id === newMenu.id);
       if (existe) {
         alert("menu ya existe en template ");
         return state;
