@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Grid, TextField, Typography } from "@mui/material";
+import { createNewMenue } from "../../../services/menuesServices";
+import { Link, useNavigate } from "react-router-dom";
 
 const CreateProducto = () => {
+  const navigate = useNavigate();
+  const [newMenu, setNewMenu] = useState({
+    name: "",
+    price: "",
+    img: "",
+    option: "",
+    priceOption: "",
+  });
+
+  const handleChange = (e) => {
+    setNewMenu({ ...newMenu, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createNewMenue(newMenu);
+    alert("menu added successfully");
+    navigate("/home");
+  };
   return (
     <div style={{ width: " 90%", margin: "auto" }}>
       <Typography variant="h6" gutterBottom>
-        Ingresar nuevo menu:
+        Add new menu:
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
@@ -16,6 +37,7 @@ const CreateProducto = () => {
             label="Name"
             fullWidth
             variant="standard"
+            onChange={handleChange}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -26,6 +48,7 @@ const CreateProducto = () => {
             label="Price"
             fullWidth
             variant="standard"
+            onChange={handleChange}
           />
         </Grid>
         <Grid item xs={12}>
@@ -35,19 +58,20 @@ const CreateProducto = () => {
             name="img"
             label="Image"
             fullWidth
-            autoComplete="shipping address-line1"
             variant="standard"
+            onChange={handleChange}
           />
         </Grid>
 
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="Opcion"
-            name="Opcion"
-            label="Opcion"
+            id="Option"
+            name="Option"
+            label="Option"
             fullWidth
             variant="standard"
+            onChange={handleChange}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -57,10 +81,14 @@ const CreateProducto = () => {
             label="Price option"
             fullWidth
             variant="standard"
+            onChange={handleChange}
           />
         </Grid>
       </Grid>
-      <Button>Enviar</Button>
+      <Button onClick={handleSubmit}>Send</Button>
+      <Link to="/home">
+        <Button>Cancel</Button>
+      </Link>
       {/* </Modal> */}
     </div>
   );

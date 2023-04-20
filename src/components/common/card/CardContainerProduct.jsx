@@ -4,8 +4,9 @@ import CardProducto from "./CardProducto";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { UserData } from "../../context/UserContext";
+import styled from "../../pages/Home/home.module.css";
 
-const CardContainerProduct = ({ menues }) => {
+const CardContainerProduct = ({ menues, setChange }) => {
   const { dispatch } = useContext(InfoContext);
   const { userstate } = useContext(UserData);
   const addToday = (menu) => {
@@ -13,13 +14,20 @@ const CardContainerProduct = ({ menues }) => {
   };
 
   return (
-    <div className={userstate.theme}>
+    <div className={`${userstate.theme} ${styled.h1H}`}>
       <Link to="/newProduct">
-        <Button>Nuevo producto</Button>
+        <Button variant="outlined" onClick={() => setChange(true)}>
+          New product
+        </Button>
       </Link>
-      <h2>Menues para elegir:</h2>
+      <h2>Menues to select:</h2>
       {menues.map((menu) => (
-        <CardProducto key={menu.id} producto={menu} addToday={addToday} />
+        <CardProducto
+          key={menu.id}
+          product={menu}
+          addToday={addToday}
+          setChange={setChange}
+        />
       ))}
     </div>
   );

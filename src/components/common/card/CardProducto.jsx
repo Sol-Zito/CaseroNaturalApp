@@ -5,9 +5,10 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActions } from "@mui/material";
 import { InfoContext } from "../../context/InfoContext";
+import { Link } from "react-router-dom";
 
-const CardProducto = ({ producto, addToday }) => {
-  const { name, precio, img } = producto;
+const CardProducto = ({ product, addToday, setChange }) => {
+  const { name, price, img } = product;
   const { state } = useContext(InfoContext);
   const isAdd = state.menues;
 
@@ -37,34 +38,34 @@ const CardProducto = ({ producto, addToday }) => {
           alt={name}
           sx={{ height: "60px" }}
         />
-        <Typography variant="h6" color="text.secondary" name="precio">
-          {precio}
+        <Typography variant="h6" color="text.secondary" name="price">
+          {price}
         </Typography>
       </CardContent>
 
       <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-        {isAdd.some((el) => el.id === producto.id) ? (
+        {isAdd.some((el) => el.id === product.id) ? (
           <Button variant="contained" disabled>
-            Agregar
+            Add menu
           </Button>
         ) : (
           <Button
             onClick={() => {
-              addToday(producto);
+              addToday(product);
             }}
             style={{ color: "white", backgroundColor: "blue" }}
           >
-            Agregar
+            Add menu
           </Button>
         )}
-        <Button
-          // onClick={() => {
-          //   modProduct(producto);
-          // }}
-          style={{ color: "white", backgroundColor: "blue" }}
-        >
-          Ediatr
-        </Button>
+        <Link to={`/updateProduct/${product.id}`}>
+          <Button
+            style={{ color: "white", backgroundColor: "blue" }}
+            onClick={() => setChange(true)}
+          >
+            Modify
+          </Button>
+        </Link>
       </CardActions>
     </Card>
   );

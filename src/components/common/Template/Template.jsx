@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Button from "@mui/material/Button";
 import { InfoContext } from "../../context/InfoContext";
 import { UserData } from "../../context/UserContext";
@@ -16,10 +16,18 @@ const Template = () => {
     dispatch({ type: "REMOVE_MENUE", payload: obj });
   };
 
+  useEffect(() => {}, [state.menues]);
+
   return (
     <>
       <div className={styles.divbtn}>
         <Button variant="outlined">Imprimir</Button>
+        <Button
+          variant="outlined"
+          onClick={() => dispatch({ type: "CLEAR_ALL" })}
+        >
+          Vaciar template
+        </Button>
       </div>
       <div className={styles.box}>
         <main>
