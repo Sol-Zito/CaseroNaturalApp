@@ -1,38 +1,71 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import { InfoContext } from "../../context/InfoContext";
 import { UserData } from "../../context/UserContext";
 import { Delete } from "@mui/icons-material";
 import styles from "./Template.module.css";
+import Swal from "sweetalert2";
 
 const Template = () => {
   const { state, dispatch } = useContext(InfoContext);
   const { userstate } = useContext(UserData);
   const infoUser = userstate.userInfo;
-  const menues = state.menues;
+  const [menues, setMenues] = useState([]);
   const sandwicheria = state.sandwicheria;
 
   const removeProduct = (obj) => {
-    dispatch({ type: "REMOVE_MENUE", payload: obj });
+    Swal.fire({
+      title: "Are you sure?",
+      text: `${obj.name} -- will be removed`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch({ type: "REMOVE_MENUE", payload: obj });
+        Swal.fire("Deleted!", "Your menu has been deleted.", "success");
+      }
+    });
   };
 
-  useEffect(() => {}, [state.menues]);
+  useEffect(() => {
+    setMenues(state.menues);
+    console.log(state.menues);
+  }, [state.menues]);
+
+  const clearTemplate = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch({ type: "CLEAR_ALL" });
+        Swal.fire("Deleted!", "Template has been emptied.", "success");
+      }
+    });
+  };
 
   return (
     <>
-      <div className={styles.divbtn}>
-        <Button variant="outlined">Imprimir</Button>
-        <Button
-          variant="outlined"
-          onClick={() => dispatch({ type: "CLEAR_ALL" })}
-        >
-          Vaciar template
-        </Button>
-      </div>
+      {menues.length > 0 && (
+        <div className={styles.divbtn}>
+          <Button variant="outlined">Print</Button>
+          <Button variant="outlined" onClick={clearTemplate}>
+            Empty template
+          </Button>
+        </div>
+      )}
       <div className={styles.box}>
         <main>
           <h1>Name: {infoUser.namestore}</h1>
-          <h4>@intagram: {infoUser.instagram}</h4>
+          <h4>Intagram: {infoUser.instagram}</h4>
           {/* <h3>
             Horario: {infoUser.horario.dias} {infoUser.horario.horas}
           </h3> */}

@@ -72,7 +72,6 @@ export const ChangeDataBussines = () => {
   const handlechangeBuss = (e) => {
     setDataB({ ...dataB, [e.target.name]: e.target.value });
   };
-  console.log("dataB", dataB);
 
   const handleSubmitBuss = (e) => {
     e.preventDefault();

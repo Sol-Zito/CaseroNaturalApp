@@ -5,7 +5,6 @@ import { getMenuesById, updateMenues } from "../../../services/menuesServices";
 const CardUpdateProduct = () => {
   const { id } = useParams();
 
-  console.log("give to id", id);
   const [modMenu, setModMenue] = useState({});
 
   useEffect(() => {
@@ -20,8 +19,6 @@ const CardUpdateProduct = () => {
   const handleChange = (e) => {
     setModMenue({ ...modMenu, [e.target.name]: e.target.value });
   };
-
-  console.log("obj", modMenu);
 
   const handleSubmit = (e) => {
     e.preventDefault();

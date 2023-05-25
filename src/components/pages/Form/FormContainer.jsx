@@ -12,8 +12,6 @@ const FormContainer = () => {
     password: "",
   });
 
-  console.log("newUser", newUser);
-
   const handleChange = (e) => {
     setNewUser({ ...newUser, [e.target.name]: e.target.value });
   };

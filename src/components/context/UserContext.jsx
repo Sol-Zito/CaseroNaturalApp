@@ -57,7 +57,6 @@ function changeValues(userstate, action) {
       return { ...userstate, userInfo: getUserFromStorage() };
     case "CHANGE_ALL":
       let newUser = action.payload;
-      console.log("action.payload", action.payload);
       let newInfo = {
         ...userstate.DataBase,
         namestore: newUser.namestore,
@@ -68,7 +67,6 @@ function changeValues(userstate, action) {
           password: newUser.password,
         },
       };
-      console.log("userstate", newInfo);
       localStorage.setItem("user", JSON.stringify(newInfo));
       return { ...userstate, userInfo: getUserFromStorage() };
     case "CHANGE_THEME":
@@ -77,7 +75,6 @@ function changeValues(userstate, action) {
       } else if (userstate.theme === "light") {
         localStorage.setItem("theme", "dark");
       }
-      alert("se cambio el theme");
       return { ...userstate, theme: getThemeFromStorage() };
 
     default:

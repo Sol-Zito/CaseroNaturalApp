@@ -24,8 +24,6 @@ const initialValues = {
   sandwicheria: [],
 };
 
-console.log("menus es infoContext", initialValues.menues);
-
 function changeValues(state, action) {
   switch (action.type) {
     case "ADD_MENUE":
@@ -36,14 +34,11 @@ function changeValues(state, action) {
         return state;
       } else {
         setMenuStorage(newMenu);
-        console.log("log de state en home", state.menues);
-        alert(`add to template`);
         return { ...state, menues: getMenuStorage() };
       }
     case "REMOVE_MENUE":
       let newArr = state.menues.filter((ele) => ele.id !== action.payload.id);
       removeMenuStorage(newArr);
-      alert(`remove to template`);
       return { ...state, menues: getMenuStorage() };
     case "CLEAR_ALL":
       localStorage.setItem("menu", []);
